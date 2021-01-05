@@ -7,27 +7,24 @@ public class Main {
     public static void main(String[] args) {
         System.out.println("Main th starting");
 
-        Thread th1 = new Thread(new AddTask<Integer>(1));
-        Thread th2 = new Thread(new AddTask<Integer>(2));
+        Semaphore semaphore = new Semaphore(1);
 
-        Thread th3 = new Thread(new PeekTask<>());
-
-        Thread th4 = new Thread(new PollTask<>());
+        QThread<Integer> th1 = new QThread<>(semaphore,"add", 1);
+        //QThread<Integer> th2 = new QThread<>(semaphore,"poll");
 
         th1.start();
-        th2.start();
-        th3.start();
-        th4.start();
+        //th2.start();
 
         try {
             th1.join();
-            th2.join();
-            th3.join();
-            th3.join();
+            //th2.join();
+
+
 
         } catch (InterruptedException e) {
             System.out.println("Interrupted");
         }
+
         System.out.println("Main th finish");
     }
 }
