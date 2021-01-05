@@ -10,14 +10,14 @@ public class Main {
         Semaphore semaphore = new Semaphore(1);
 
         QThread<Integer> th1 = new QThread<>(semaphore,"add", 1);
-        //QThread<Integer> th2 = new QThread<>(semaphore,"poll");
+        QThread<Integer> th2 = new QThread<>(semaphore,"poll");
 
         th1.start();
-        //th2.start();
+        th2.start();
 
         try {
             th1.join();
-            //th2.join();
+            th2.join();
 
 
 

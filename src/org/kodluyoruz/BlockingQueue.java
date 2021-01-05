@@ -23,8 +23,6 @@ public class BlockingQueue<T> implements IQueue<T> {
                 rear = node;
                 System.out.println("eklenen değer: " + rear.getValue());
             }
-
-
     }
 
     @Override

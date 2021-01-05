@@ -6,7 +6,7 @@ public class QThread<T> extends Thread{
 
     String thName;
     Semaphore semaphore;
-    BlockingQueue<T> queue;
+    BlockingQueue<T> queue = new BlockingQueue<>();
     T value;
 
     public QThread(Semaphore semaphore, String thName){
@@ -30,8 +30,9 @@ public class QThread<T> extends Thread{
 
                 System.out.println(thName + " gets a permit.");
 
-                queue.add(value);
-                Thread.sleep(10);
+                System.out.println("ADD OK");
+                //queue.add(value);
+                Thread.sleep(1000);
 
             } catch (Exception e) {
                 System.out.println("Interrupt add");
@@ -47,9 +48,11 @@ public class QThread<T> extends Thread{
 
                 semaphore.acquire();
                 System.out.println(thName + " gets a permit.");
-                queue.poll();
-                Thread.sleep(10);
-
+                System.out.println("POLL OK");
+                //queue.poll();
+                Thread.sleep(1000);
+                System.out.println(thName + " releases the permit.");
+                semaphore.release();
             }catch (Exception e) {
                 System.out.println("Interrupt polls");
 
